@@ -1,0 +1,73 @@
+/* App.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding does not affect the width */
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #7ACFC8;
+  width: 100%;
+  box-shadow: 0 4px 2px -2px gray;
+}
+
+.App-logo {
+  height: 40px;
+  margin-right: 10px;
+  flex-shrink: 0; /* Prevents logo from shrinking */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between; /* Spreads out content */
+  align-items: center;
+  width: 100%; /* Takes full width of the header */
+}
+
+.App-title {
+  font-size: 24px;
+  margin: 0;
+  flex-grow: 1;
+  color: #FFFFFF;
+  text-align: center;
+  transform: translateX(-5%); /* Adjust this value to visually center the title */
+}
+
+.loading-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px; /* Adjust height as needed */
+  width: 100%;
+}
+
+.loading-dots div {
+  width: 8px; /* Size of the dot */
+  height: 8px; /* Size of the dot */
+  background-color: #007bff; /* Color of the dots */
+  border-radius: 50%; /* Makes the dot circular */
+  margin: 0 3px; /* Space between dots */
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1.0);
+  }
+}
+
+/* Individual delays for each dot */
+.loading-dots div:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots div:nth-child(2) { animation-delay: -0.16s; }
+.loading-dots div:nth-child(3) { animation-delay: 0s; }
