@@ -71,8 +71,8 @@ const Chat = ({
 
   const handleSendMessage = async (query = input, model = selectedModel) => {
     if (query.length > 0 && query.length <= 300) {
-      const apiUrl = model === 'gpt-3'
-        ? 'http://127.0.0.1:8000/bot/conversation'
+      const apiUrl = model === 'gpt-3.5-turbo'
+        ? 'http://0.0.0.0:8001/bot/conversation'
         : 'http://127.0.0.1:8000/bot/conversation';
       await fetchAndUpdateMessages(apiUrl, query);
     }

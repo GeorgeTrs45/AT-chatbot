@@ -3,7 +3,7 @@ import Chat from "./chat";
 import "./App.css";
 
 function App() {
-  const botName = "AT Chatbot (V1)";
+  const botName = "AT CHATBOT (v1)";
   return (
     <div className="App">
       <header className="App-header">
