@@ -61,7 +61,7 @@ const Chat = () => {
   };
 
   const handleSendMessage = async (query = input, model = selectedModel) => {
-    if (query.length > 0 && query.length <= 300) {
+    if (query.length > 0 && query.length <= 500) {
       const apiUrl =
         model === "gpt-3"
           ? "http://127.0.0.1:8000/bot/conversation"
@@ -132,7 +132,7 @@ const Chat = () => {
           <button
             onClick={() => handleSendMessage()}
             className="chat-button"
-            disabled={input.length === 0 || input.length > 300}
+            disabled={input.length === 0 || input.length > 500}
           >
             Send
           </button>
