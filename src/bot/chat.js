@@ -1,24 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Chat.css';
+import { TbRobot } from "react-icons/tb";
+import { FaUserDoctor } from "react-icons/fa6";
+import { BiSolidPaperPlane } from "react-icons/bi";
 
-const Chat = ({
-  width="800px",
-  height="500px",
-  question
-}) => {
-  const [messages, setMessages] = useState([]);
+const Chat = () => {
+  const [messages, setMessages] = useState([{bot:'How can I help you?', user:''}]);
   const [isFetchingMessage, setIsFetchingMessage] = useState(false);
   const [input, setInput] = useState('');
-  const [selectedModel, setSelectedModel] = useState('gpt-4');
+  const [question, setQuestion] = useState("");
+  const selectedModel='gpt-4';
   const messagesEndRef = useRef(null);
 
-  // Array of predefined questions
   const quickReplies = [
     "How could you help me?",
     "Provide some healthcare service details",
     "How can I book an appointment?"
   ];
-
   useEffect(()=>{
     if(question){
       handleSendMessage(question)
@@ -69,9 +67,9 @@ const Chat = ({
 
   };
 
-  const handleSendMessage = async (query = input, model = selectedModel) => {
+  const handleSendMessage = async (query = input) => {
     if (query.length > 0 && query.length <= 500) {
-      const apiUrl = model === 'gpt-3.5-turbo'
+      const apiUrl = selectedModel === 'gpt-3.5-turbo'
         ? 'http://0.0.0.0:8001/bot/conversation'
         : 'http://127.0.0.1:8000/bot/conversation';
       await fetchAndUpdateMessages(apiUrl, query);
@@ -102,28 +100,48 @@ const Chat = ({
   }
 
   return (
-    <div className="">
-      {/* <div className="quick-reply-container">
+      <div className="chat-box"> 
+        <div className='flex-row'>
+          <img src="../logo.svg" className="App-logo" alt="logo" />
+          <h1 className="App-title">Abelmed Assistant</h1>
+        </div>
+        <div className="quick-reply-container">
         {quickReplies.map((reply, index) => (
-          <div key={index} className="quick-reply" onClick={() => handleSendMessage(reply, 'gpt-4')}>
+          <div
+            key={index}
+            className="quick-reply"
+            onClick={() => setQuestion(reply)}
+          >
             {reply}
           </div>
         ))}
-      </div> */}
-
-      <div className="chat-box" style={{ width, height }}>
-        <div className="chat-header">Chat Assistant</div>
+      </div>
         <div className="chat-messages-container">
           <div className="chat-messages">
             {messages.map((msg, index) => (
               <div key={index} className="chat-message">
-                <p><strong>User:</strong> {msg.user}</p>
-                <p><strong>Bot:</strong></p>  {isFetchingMessage && index == messages.length-1 ? <div class="loading-dots">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div> : null}
-                <div className="bot-response" dangerouslySetInnerHTML={{ __html: msg.bot }} />
+                {index===0 ? null: 
+                  <div className='flex-user'>
+                    <div className='round-border'>
+                      <FaUserDoctor size={"20px"}/>
+                    </div>
+                    <div className='user-response-block'>
+                      <p className='text-end'><strong>User</strong></p>
+                      <p className='user-response'>{msg.user}</p>
+                    </div>
+
+                  </div>
+                }
+                {isFetchingMessage && index === messages.length-1 ? <div className="loading-dots"></div> : null}
+                <div className='flex-bot'>
+                    <div className='round-border'>
+                      <TbRobot size={"25px"}/>
+                    </div>
+                    <div className='bot-response-block'>
+                      <p><strong>Medi</strong></p>
+                      <div className="bot-response" dangerouslySetInnerHTML={{ __html: msg.bot }} />
+                    </div>
+                  </div>
               </div>
             ))}
 
@@ -137,7 +155,7 @@ const Chat = ({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyPress}
-            placeholder="Type message"
+            placeholder="Compose your message..."
             // style={{ width:"300px"}}
           />
           <button
@@ -145,11 +163,10 @@ const Chat = ({
             className="chat-button"
             disabled={input.length === 0 || input.length > 500}
           >
-            Send
+            <BiSolidPaperPlane size={"20px"}/>
           </button>
         </div>
       </div>
-    </div>
   );
 };
 
