@@ -19,28 +19,13 @@
   box-shadow: 0 4px 2px -2px gray;
 }
 
-.App-logo {
-  height: 40px;
-  margin-right: 10px;
-  flex-shrink: 0; /* Prevents logo from shrinking */
-}
-
 .header-content {
   display: flex;
   justify-content: space-between; /* Spreads out content */
   align-items: center;
   width: 100%; /* Takes full width of the header */
 }
-
-.App-title {
-  font-size: 24px;
-  margin: 0;
-  flex-grow: 1;
-  color: #FFFFFF;
-  text-align: center;
-  transform: translateX(-5%); /* Adjust this value to visually center the title */
-}
-
+ 
 .loading-dots {
   display: flex;
   align-items: center;
