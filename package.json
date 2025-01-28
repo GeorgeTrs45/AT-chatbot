@@ -1,7 +1,7 @@
 {
-  "name": "abelmed-chatbot",
-  "version": "0.1.0",
-  "private": true,
+  "name": "at-chatbot",
+  "version": "0.1.2",
+  "main": "index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

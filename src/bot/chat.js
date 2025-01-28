@@ -4,7 +4,7 @@ import { TbRobot } from "react-icons/tb";
 import { FaUserDoctor } from "react-icons/fa6";
 import { BiSolidPaperPlane } from "react-icons/bi";
 
-const Chat = ({url="http://127.0.0.1:8000/bot/conversation", heights=150}) => {
+const Chat = ({url="http://127.0.0.1:8000/bot/conversation", height="150px"}) => {
   const [messages, setMessages] = useState([{bot:'How can I help you?', user:''}]);
   const [isFetchingMessage, setIsFetchingMessage] = useState(false);
   const [input, setInput] = useState('');
@@ -118,7 +118,7 @@ const Chat = ({url="http://127.0.0.1:8000/bot/conversation", heights=150}) => {
                   ))}
                 </div>
               </div>
-              <div className="chat-messages-container" style={{height: `${heights}px`}}>
+              <div className="chat-messages-container" style={{height: `${height}`}}>
                 <div className="chat-messages">
                   {messages.map((msg, index) => (
                     <div key={index} className="chat-message">
