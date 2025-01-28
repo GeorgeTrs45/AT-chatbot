@@ -59,8 +59,9 @@
 }
 
 .quick-reply:hover {
-  background-color: #e2e2e2; /* Slightly darker on hover */
+  background-color: #007bff; /* Slightly darker on hover */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  font-weight: bold;
 }
 .chat-box {
   min-width: 280px; 
@@ -71,10 +72,10 @@
 .chat-messages-container {
   flex-grow: 1;
   overflow-y: scroll;
-  padding-inline: 10px;
-  margin-bottom: 20px;
-  scrollbar-width: none; /* Firefox */
-  padding-block:10px;
+  padding: 10px 10px 20px;
+  scrollbar-width: none;
+  background-color: white;
+  color: black;
  
 }
 
@@ -143,7 +144,7 @@
   width: 100%;
   align-items: center;
   background: #f1f1f1;
-  border-radius: 10px;
+  border-bottom: 10px;
   padding: 10px;
 }
 

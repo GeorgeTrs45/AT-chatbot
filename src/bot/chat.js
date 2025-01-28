@@ -3,6 +3,7 @@ import './Chat.css';
 import { TbRobot } from "react-icons/tb";
 import { FaUserDoctor } from "react-icons/fa6";
 import { BiSolidPaperPlane } from "react-icons/bi";
+import logo from "../assets/logo.svg"
 
 const Chat = ({url="http://127.0.0.1:8000/bot/conversation", height="150px"}) => {
   const [messages, setMessages] = useState([{bot:'How can I help you?', user:''}]);
@@ -103,7 +104,7 @@ const Chat = ({url="http://127.0.0.1:8000/bot/conversation", height="150px"}) =>
             <div className="chat-box"> 
               <div className='top-hero'>
                 <div className='flex-row'>
-                  <img src="../logo.svg" className="App-logo" alt="logo" />
+                  <img src={logo} className="App-logo" alt="logo" />
                   <h1 className="App-title">Abelmed Assistant</h1>
                 </div>
                 <div className="quick-reply-container">
