@@ -1,5 +1,5 @@
 {
-  "name": "AT-chatbot-fe",
+  "name": "abelmed-chatbot",
   "version": "0.1.0",
   "private": true,
   "types": "dist/index.d.ts",

@@ -2,13 +2,10 @@ import React from "react";
 import Chat from "./bot/chat";
 import "./App.css";
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-      <div className="chat-container">
-        <Chat />
-      </div>
-    </div>
+        <Chat {...props}/>
+        
   );
 }
 

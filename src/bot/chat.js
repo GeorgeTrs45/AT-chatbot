@@ -4,7 +4,7 @@ import { TbRobot } from "react-icons/tb";
 import { FaUserDoctor } from "react-icons/fa6";
 import { BiSolidPaperPlane } from "react-icons/bi";
 
-const Chat = () => {
+const Chat = ({url="http://127.0.0.1:8000/bot/conversation", heights=150}) => {
   const [messages, setMessages] = useState([{bot:'How can I help you?', user:''}]);
   const [isFetchingMessage, setIsFetchingMessage] = useState(false);
   const [input, setInput] = useState('');
@@ -69,10 +69,7 @@ const Chat = () => {
 
   const handleSendMessage = async (query = input) => {
     if (query.length > 0 && query.length <= 500) {
-      const apiUrl = selectedModel === 'gpt-3.5-turbo'
-        ? 'http://0.0.0.0:8001/bot/conversation'
-        : 'http://127.0.0.1:8000/bot/conversation';
-      await fetchAndUpdateMessages(apiUrl, query);
+      await fetchAndUpdateMessages(url, query);
     }
   };
 
@@ -100,73 +97,80 @@ const Chat = () => {
   }
 
   return (
-      <div className="chat-box"> 
-        <div className='flex-row'>
-          <img src="../logo.svg" className="App-logo" alt="logo" />
-          <h1 className="App-title">Abelmed Assistant</h1>
-        </div>
-        <div className="quick-reply-container">
-        {quickReplies.map((reply, index) => (
-          <div
-            key={index}
-            className="quick-reply"
-            onClick={() => setQuestion(reply)}
-          >
-            {reply}
-          </div>
-        ))}
-      </div>
-        <div className="chat-messages-container">
-          <div className="chat-messages">
-            {messages.map((msg, index) => (
-              <div key={index} className="chat-message">
-                {index===0 ? null: 
-                  <div className='flex-user'>
-                    <div className='round-border'>
-                      <FaUserDoctor size={"20px"}/>
-                    </div>
-                    <div className='user-response-block'>
-                      <p className='text-end'><strong>User</strong></p>
-                      <p className='user-response'>{msg.user}</p>
-                    </div>
+        <div className="App">
+          <div className="chat-container">
 
-                  </div>
-                }
-                {isFetchingMessage && index === messages.length-1 ? <div className="loading-dots"></div> : null}
-                <div className='flex-bot'>
-                    <div className='round-border'>
-                      <TbRobot size={"25px"}/>
+            <div className="chat-box"> 
+              <div className='top-hero'>
+                <div className='flex-row'>
+                  <img src="../logo.svg" className="App-logo" alt="logo" />
+                  <h1 className="App-title">Abelmed Assistant</h1>
+                </div>
+                <div className="quick-reply-container">
+                  {quickReplies.map((reply, index) => (
+                    <div
+                      key={index}
+                      className="quick-reply"
+                      onClick={() => setQuestion(reply)}
+                    >
+                      {reply}
                     </div>
-                    <div className='bot-response-block'>
-                      <p><strong>Medi</strong></p>
-                      <div className="bot-response" dangerouslySetInnerHTML={{ __html: msg.bot }} />
-                    </div>
-                  </div>
+                  ))}
+                </div>
               </div>
-            ))}
+              <div className="chat-messages-container" style={{height: `${heights}px`}}>
+                <div className="chat-messages">
+                  {messages.map((msg, index) => (
+                    <div key={index} className="chat-message">
+                      {index===0 ? null: 
+                        <div className='flex-user'>
+                          <div className='round-border'>
+                            <FaUserDoctor size={"20px"}/>
+                          </div>
+                          <div className='user-response-block'>
+                            <p className='text-end'><strong>User</strong></p>
+                            <p className='user-response'>{msg.user}</p>
+                          </div>
 
-            <div ref={messagesEndRef} />
+                        </div>
+                      }
+                      {isFetchingMessage && index === messages.length-1 ? <div className="loading-dots"></div> : null}
+                      <div className='flex-bot'>
+                          <div className='round-border'>
+                            <TbRobot size={"25px"}/>
+                          </div>
+                          <div className='bot-response-block'>
+                            <p><strong>Medi</strong></p>
+                            <div className="bot-response" dangerouslySetInnerHTML={{ __html: msg.bot }} />
+                          </div>
+                        </div>
+                    </div>
+                  ))}
+
+                  <div ref={messagesEndRef} />
+                </div>
+              </div>
+              <div className="chat-input-container">
+                <input
+                  type="text"
+                  className="chat-input"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyPress}
+                  placeholder="Compose your message..."
+                  // style={{ width:"300px"}}
+                />
+                <button
+                  onClick={() => handleSendMessage()}
+                  className="chat-button"
+                  disabled={input.length === 0 || input.length > 500}
+                >
+                  <BiSolidPaperPlane size={"20px"}/>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="chat-input-container">
-          <input
-            type="text"
-            className="chat-input"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyPress}
-            placeholder="Compose your message..."
-            // style={{ width:"300px"}}
-          />
-          <button
-            onClick={() => handleSendMessage()}
-            className="chat-button"
-            disabled={input.length === 0 || input.length > 500}
-          >
-            <BiSolidPaperPlane size={"20px"}/>
-          </button>
-        </div>
-      </div>
   );
 };
 

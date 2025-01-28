@@ -1,4 +1,4 @@
-# listings-chatbot-fe
+# abelmed chatbot
 
 The `Chat` component is a reusable React component included in this project. It provides a chat interface that can be customized through optional props.
 
