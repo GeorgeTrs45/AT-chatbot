@@ -5,7 +5,7 @@ import { FaUserDoctor } from "react-icons/fa6";
 import { BiSolidPaperPlane } from "react-icons/bi";
 import logo from "../assets/logo.svg"
 
-const Chat = ({url="http://127.0.0.1:8000/bot/conversation", height="150px"}) => {
+const Chat = ({url="https://innchatbe-dgcge9h4drg6e0ep.northcentralus-01.azurewebsites.net/bot/conversation", height="150px"}) => {
   const [messages, setMessages] = useState([{bot:'How can I help you?', user:''}]);
   const [isFetchingMessage, setIsFetchingMessage] = useState(false);
   const [input, setInput] = useState('');
